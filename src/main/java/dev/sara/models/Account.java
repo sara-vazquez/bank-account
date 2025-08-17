@@ -1,14 +1,54 @@
 package dev.sara.models;
 
-public class BankAccount {
+public class Account {
 
-    protected float saldo;
-    protected int numeroConsignaciones = 0;
-    protected int numeroRetiros = 0;
-    protected float tasaAnual;
-    protected float comisionMensual = 0;
+    protected float balance;
+    protected int depositCount = 0;
+    protected int withdrawalCount = 0;
+    protected float annualRate;
+    protected float monthlyFee = 0f;
 
-    
+    public Account(float initialBalance, float annualRate) {
+        if(initialBalance < 0) throw new IllegalArgumentException("El saldo inicial no puede ser negativo");
+        if(annualRate < 0) throw new IllegalArgumentException("La tasa anual no puede ser negativa");
+        this.balance = initialBalance;
+        this.annualRate = annualRate;
+    } 
+
+    public void deposit (float amount) {
+        if (amount <= 0) throw new IllegalArgumentException("El depósito debe ser positivo");
+        balance += amount;
+        depositCount++;
+    }
+
+    public boolean withdraw(float amount) {
+        if (amount <= 0) throw new IllegalArgumentException("El retiro debe ser positivo");
+        if (amount > balance) return false;
+        balance -= amount;
+        withdrawalCount++;
+        return true;
+    } 
+
+    public float calculateMonthlyInterest() {
+        float monthlyRate = (annualRate / 100f) / 12f;
+        float interest = balance * monthlyRate;
+        balance += interest;
+        return interest;
+    }
+
+    public void monthlyStatement() {
+        if(monthlyFee < 0) monthlyFee = 0;
+        balance -= monthlyFee;
+        calculateMonthlyInterest();
+        monthlyFee = 0f;
+    }
+
+    public String print() {
+        return String.format(                
+            "Saldo: %.2f | Consignaciones: %d | Retiros: %d | Tasa anual: %.2f%% | Comisión mensual: %.2f",
+            balance, depositCount, withdrawalCount, annualRate, monthlyFee
+        );
+    }
 }
 
 /*
