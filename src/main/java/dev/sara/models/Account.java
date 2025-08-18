@@ -49,6 +49,29 @@ public class Account {
             balance, depositCount, withdrawalCount, annualRate, monthlyFee
         );
     }
+
+    //Getters para poder testear
+
+    public float getBalance() {
+        return balance;
+    }
+    
+    public int getDepositCount() {
+        return depositCount;
+    }
+    
+    public int getWithdrawalCount() {
+        return withdrawalCount;
+    }
+    
+    public float getAnnualRate() {
+        return annualRate;
+    }
+    
+    public float getMonthlyFee() {
+        return monthlyFee;
+    }
+    
 }
 
 /*
