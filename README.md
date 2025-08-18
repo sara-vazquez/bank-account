@@ -49,7 +49,8 @@ Account <|-- CheckingAccount
 ```
 
 
-### 🧪 Test
+## 🧪 Test
 ![test coverage](coverage_inheritance.png)
+
 
 
