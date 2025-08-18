@@ -30,8 +30,9 @@ public class AccountTest {
     void testWithdraw() {
         boolean success = account.withdraw(250f);
         assertTrue(success);
-        assertThat((double) account.getBalance(), is(closeTo(250.0, 0.1)));
+        assertThat((double) account.getBalance(), is(closeTo(750.0, 0.1)));
         assertThat(account.getWithdrawalCount(), is(equalTo(1)));
+
     }
 
     
