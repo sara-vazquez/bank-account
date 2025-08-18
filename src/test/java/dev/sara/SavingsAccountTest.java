@@ -37,7 +37,8 @@ public class SavingsAccountTest {
 
     @Test
     void testDepositSavingsAccount_Inactive() {
-        assertThrows(IllegalStateException.class, () -> inactiveAccount.deposit(10f));
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> inactiveAccount.deposit(10f));
+        assertThat(exception.getMessage(), is(equalTo("La cuenta está inactiva")));
     }
 
     @Test
@@ -50,14 +51,14 @@ public class SavingsAccountTest {
 
     @Test
     void testMonthlyStatementAnd5Withdrawals() {
-        SavingsAccount activeAccount = new SavingsAccount(12000f, 12f);
-        activeAccount.withdraw(100f);
-        activeAccount.withdraw(100f);
-        activeAccount.withdraw(100f);
-        activeAccount.withdraw(100f);
-        activeAccount.withdraw(100f);
+        SavingsAccount testAccount = new SavingsAccount(12000f, 12f);
+        testAccount.withdraw(100f);
+        testAccount.withdraw(100f);
+        testAccount.withdraw(100f);
+        testAccount.withdraw(100f);
+        testAccount.withdraw(100f);
 
-        activeAccount.monthlyStatement();
-        assertThat((double)activeAccount.getBalance(), is(closeTo(10605f, 0.1f)));
+        testAccount.monthlyStatement();
+        assertThat((double)testAccount.getBalance(), is(closeTo(10605f, 0.1f)));
     }
 }
