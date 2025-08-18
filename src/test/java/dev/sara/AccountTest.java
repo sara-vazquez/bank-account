@@ -32,7 +32,6 @@ public class AccountTest {
         assertTrue(success);
         assertThat((double) account.getBalance(), is(closeTo(750.0, 0.1)));
         assertThat(account.getWithdrawalCount(), is(equalTo(1)));
-
     }
 
     
