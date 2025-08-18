@@ -38,7 +38,7 @@ public class SavingsAccountTest {
     @Test
     void testDepositSavingsAccount_Inactive() {
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> inactiveAccount.deposit(10f));
-        assertThat(exception.getMessage(), is(equalTo("La cuenta está inactiva")));
+        assertThat(exception.getMessage(), is(equalTo("La cuenta de ahorros está inactiva; no se permite consignar")));
     }
 
     @Test
