@@ -2,6 +2,7 @@ package dev.sara;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,5 +24,12 @@ public class SavingsAccountTest {
     void testActiveAccount() {
         assertTrue(activeAccount.isActive());
         assertThat((double) activeAccount.getBalance(), is(closeTo(15000f, 0.01f)));
+    }
+
+    @Test
+    void testDepositSavingsAccount() {
+        activeAccount.deposit(500f);
+        assertThat((double)activeAccount.getBalance(), is(closeTo(15500f, 0.01f)));
+        assertThat(activeAccount.getDepositCount(), is(equalTo(1)));
     }
 }
