@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,14 @@ public class AccountTest {
         account.deposit(500.0f);
         assertThat((double) account.getBalance(), is(closeTo(1500.0, 0.1))); 
         assertThat(account.getDepositCount(), is(equalTo(1)));
-        
+    }
+
+    @Test
+    void testWithdraw() {
+        boolean success = account.withdraw(250f);
+        assertTrue(success);
+        assertThat((double) account.getBalance(), is(closeTo(250.0, 0.1)));
+        assertThat(account.getWithdrawalCount(), is(equalTo(1)));
     }
 
     
